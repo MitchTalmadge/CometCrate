@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "CometCrate Essentials Server",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "live-test": "npm run build && node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CometCrate/Essentials.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/CometCrate/Essentials/issues"
+  },
+  "homepage": "https://github.com/CometCrate/Essentials#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.1",
+    "@types/node": "^12.7.11",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.6.3"
+  }
+}
