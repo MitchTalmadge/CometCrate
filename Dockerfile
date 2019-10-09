@@ -15,7 +15,7 @@ RUN npm install
 RUN npm run build
 
 # Copy Client to Server
-RUN mv ../client/dist ./dist/static
+RUN mv ../client/dist ./dist/public
 
 # Finalize
 EXPOSE 8080
