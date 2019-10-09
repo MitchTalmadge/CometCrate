@@ -3,7 +3,7 @@ import routes from "./routes/routes";
 
 // Setup
 const app = express();
-const port: string | number = process.env.PORT || 3000;
+const port: string | number = process.env.PORT || 8080;
 
 // Routing
 app.use("/", routes);
