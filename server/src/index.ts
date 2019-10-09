@@ -1,4 +1,5 @@
 import express from "express";
+import compression from "compression";
 import routes from "./routes/routes";
 import * as path from "path";
 
@@ -10,8 +11,8 @@ const port: string | number = process.env.PORT || 8080;
 app.use("/", routes);
 
 // Static Files
-app.use("/", express.static(path.resolve(__dirname, "public")));
-app.get("*", async (request, response) => {
+app.use("/", compression(), express.static(path.resolve(__dirname, "public")));
+app.get("*", compression(), async (request, response) => {
     response.sendFile(path.resolve(__dirname, "public/index.html"));
 });
 
