@@ -4,8 +4,8 @@
   "description": "CometCrate Essentials Client",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && webpack",
-    "start:dev": "webpack-dev-server"
+    "build": "rimraf dist && webpack --progress -p",
+    "start:dev": "webpack-dev-server --progress"
   },
   "repository": {
     "type": "git",
@@ -18,13 +18,16 @@
   },
   "homepage": "https://github.com/CometCrate/Essentials#readme",
   "dependencies": {
+    "core-js": "^3.2.1",
     "vue": "^2.6.10",
     "vue-class-component": "^7.1.0",
     "vue-property-decorator": "^8.2.2",
     "vue-router": "^3.1.3"
   },
   "devDependencies": {
+    "@types/webpack": "^4.39.2",
     "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
     "rimraf": "^3.0.0",
     "ts-loader": "^6.2.0",

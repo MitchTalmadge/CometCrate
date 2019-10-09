@@ -4,16 +4,17 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const HtmlPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: path.resolve(__dirname, './src/index.ts'),
+    entry: path.resolve(__dirname, 'src/main.ts'),
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
         filename: 'static/js/[name].bundle.js',
-        chunkFilename: 'static/js/[id].chunk.js'
+        chunkFilename: 'static/js/[name]-[hash].chunk.js'
     },
     resolve: {
         extensions: ['.ts', '.js', '.vue', '.json'],
         alias: {
+            '@': path.resolve(__dirname, 'src'),
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
@@ -52,7 +53,7 @@ module.exports = {
                 test: /\.(png|jpg|gif|svg)$/,
                 loader: 'file-loader',
                 options: {
-                    name: '[name].[ext]?[hash]'
+                    name: 'static/images/[hash].[ext]'
                 }
             }
         ]
@@ -60,8 +61,23 @@ module.exports = {
     optimization: {
         runtimeChunk: 'single',
         splitChunks: {
-            chunks: 'all'
-        }
+            chunks: 'all',
+            maxInitialRequests: Infinity,
+            minSize: 0,
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name(module) {
+                        // get the name. E.g. node_modules/packageName/not/this/part.js
+                        // or node_modules/packageName
+                        const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+
+                        // npm package names are URL-safe, but some servers don't like @ symbols
+                        return `npm.${packageName.replace('@', '')}`;
+                    },
+                },
+            },
+        },
     },
     performance: {
         hints: false
@@ -69,7 +85,7 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new HtmlPlugin({
-            template: path.resolve(__dirname, './src/index.html'),
+            template: path.resolve(__dirname, 'src/index.html'),
             chunksSortMode: 'dependency'
         })
     ],
