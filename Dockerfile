@@ -1,8 +1,8 @@
 FROM node:10
 WORKDIR /usr/src/app
 
-COPY client .
-COPY server .
+COPY ./client ./client
+COPY ./server ./server
 
 # Build Client
 WORKDIR /usr/src/app/client
