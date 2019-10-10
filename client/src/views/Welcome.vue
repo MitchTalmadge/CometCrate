@@ -1,6 +1,6 @@
 <template>
-    <div id="view-welcome">
-        <div class="container vh-100 d-flex">
+    <div id="view-welcome" class="h-100">
+        <div class="container h-100 d-flex">
             <div class="row w-100 align-items-center">
                 <div class="col">
                     <div class="card">

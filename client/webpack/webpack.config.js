@@ -29,6 +29,14 @@ module.exports = {
                 loader: 'vue-loader',
             },
             {
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+                options: {
+                    appendTsSuffixTo: [/\.vue$/],
+                }
+            },
+            {
                 test: /\.scss$/,
                 use: [
                     'vue-style-loader',
@@ -42,14 +50,6 @@ module.exports = {
                     'vue-style-loader',
                     'css-loader'
                 ]
-            },
-            {
-                test: /\.tsx?$/,
-                loader: 'ts-loader',
-                exclude: /node_modules/,
-                options: {
-                    appendTsSuffixTo: [/\.vue$/],
-                }
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
