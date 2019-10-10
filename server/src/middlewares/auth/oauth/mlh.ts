@@ -1,6 +1,8 @@
 import passport from "passport";
 import OAuth2Strategy from "passport-oauth2";
 import axios from "axios";
+import {User} from "../../../models/user.model";
+import {MLHUser} from "../../../models/oauth/mlh-user.model";
 
 export const OAUTH_MLH_STRATEGY = 'oauth_mlh';
 
@@ -12,9 +14,15 @@ let mlhOAuthStrategy = new OAuth2Strategy({
         callbackURL: process.env.OAUTH_MLH_CALLBACK_URL,
         scope: ["email", "phone_number", "birthday", "education"]
     },
-    (accessToken: string, refreshToken: string, profile: any, cb: any) => {
-        console.log(profile);
-        cb(null, {name: "joe"});
+    (accessToken: string, refreshToken: string, profile: MLHUser, cb: any) => {
+        let user: User = {
+            firstName: profile.first_name,
+            lastName: profile.last_name,
+            email: profile.email,
+            phone: profile.phone_number
+        };
+
+        cb(null, user);
     }
 );
 
@@ -25,7 +33,7 @@ mlhOAuthStrategy.userProfile = (accessToken: string, done: any) => {
         }
     })
         .then(response => {
-            done(null, response);
+            done(null, response.data["data"]);
         })
         .catch(err => {
             done(err);

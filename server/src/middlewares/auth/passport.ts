@@ -1,9 +1,10 @@
 import passport from "passport";
+import {User} from "../../models/user.model";
 
-passport.serializeUser((user: any, done: any) => {
+passport.serializeUser((user: User, done: any) => {
     done(null, user);
 });
 
-passport.deserializeUser((user: any, done: any) => {
+passport.deserializeUser((user: User, done: any) => {
     done(null, user);
 });
