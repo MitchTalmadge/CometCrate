@@ -3,18 +3,22 @@ const webpack = require('webpack');
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const HtmlPlugin = require("html-webpack-plugin");
 
+const RootDir = path.resolve(__dirname, "../");
+const SrcDir = path.resolve(RootDir, "src");
+const DistDir = path.resolve(RootDir, "dist");
+
 module.exports = {
-    entry: path.resolve(__dirname, 'src/main.ts'),
+    entry: path.resolve(SrcDir, 'main.ts'),
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: DistDir,
         publicPath: '/',
         filename: 'static/js/[name].bundle.js',
         chunkFilename: 'static/js/[name]-[hash].chunk.js'
     },
     resolve: {
-        extensions: ['.ts', '.js', '.vue', '.json'],
+        extensions: ['.ts', '.js', '.vue', '.json', '.scss', '.css'],
         alias: {
-            '@': path.resolve(__dirname, 'src'),
+            '@': SrcDir,
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
@@ -23,16 +27,14 @@ module.exports = {
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
-                options: {
-                    loaders: {
-                        // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-                        // the "scss" and "sass" values for the lang attribute to the right configs here.
-                        // other preprocessors should work out of the box, no loader config like this necessary.
-                        'scss': 'vue-style-loader!css-loader!sass-loader',
-                        'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
-                    }
-                    // other vue-loader options go here
-                }
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
             },
             {
                 test: /\.css$/,
@@ -73,7 +75,7 @@ module.exports = {
                         const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
 
                         // npm package names are URL-safe, but some servers don't like @ symbols
-                        return `npm.${packageName.replace('@', '')}`;
+                        return `vendor/npm.${packageName.replace('@', '')}`;
                     },
                 },
             },
@@ -85,12 +87,13 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new HtmlPlugin({
-            template: path.resolve(__dirname, 'src/index.html'),
+            template: path.resolve(SrcDir, 'index.html'),
+            favicon: path.resolve(SrcDir, "assets/favicon.ico"),
             chunksSortMode: 'dependency'
         })
     ],
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: DistDir,
         compress: true,
         historyApiFallback: true,
         hot: true,
