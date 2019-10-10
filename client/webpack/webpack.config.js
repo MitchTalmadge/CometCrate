@@ -37,18 +37,20 @@ module.exports = {
                 }
             },
             {
-                test: /\.scss$/,
+                test: /\.s?css$/,
                 use: [
                     'vue-style-loader',
                     'css-loader',
-                    'sass-loader'
-                ]
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    'vue-style-loader',
-                    'css-loader'
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            prependData:
+                                `
+                                $env: ${process.env.NODE_ENV}; 
+                                @import "@/styles/global/_global.scss";
+                                `
+                        }
+                    }
                 ]
             },
             {

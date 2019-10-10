@@ -1,0 +1,1 @@
+The scss in this directory is imported at the top of every scss file and must not contain any code that will be rendered. In other words, only variables, mix-ins, and functions may exist in these files.
