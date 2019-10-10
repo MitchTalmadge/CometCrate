@@ -104,6 +104,9 @@ module.exports = {
         port: 8000,
         stats: {
             normal: true
+        },
+        proxy: {
+            '/api': 'http://localhost:3000'
         }
     },
     devtool: '#eval-source-map'

@@ -5,7 +5,7 @@ import * as path from "path";
 
 // Setup
 const app = express();
-const port: string | number = process.env.PORT || 8080;
+const port: string | number = process.env.PORT || 3000;
 
 // Routing
 app.use("/", routes);
