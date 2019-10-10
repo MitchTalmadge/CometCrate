@@ -1,14 +1,14 @@
 import express from "express";
 import compression from "compression";
-import routes from "./routes/routes";
+import apiRouter from "./controllers";
 import * as path from "path";
 
 // Setup
 const app = express();
 const port: string | number = process.env.PORT || 3000;
 
-// Routing
-app.use("/", routes);
+// API
+app.use("/api", apiRouter);
 
 // Static Files
 app.use("/", compression(), express.static(path.resolve(__dirname, "public")));

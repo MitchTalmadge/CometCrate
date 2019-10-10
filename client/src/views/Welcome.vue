@@ -38,7 +38,7 @@
                                         <h1>Sign In</h1>
                                         <hr/>
                                         <p class="lead">Please create an account and sign in using MyMLH</p>
-                                        <a class="btn-mlh btn btn-block btn-lg btn-outline-primary" href="#">
+                                        <a class="btn-mlh btn btn-block btn-lg btn-outline-primary" href="/api/auth/oauth/mlh/login">
                                             <img src="../assets/third-party/my-mlh.svg" class="mlh-colored" alt="MyMLH Sign In" />
                                             <img src="../assets/third-party/my-mlh-white.svg" class="mlh-white" alt="MyMLH Sign In" />
                                         </a>
@@ -97,7 +97,7 @@
         width: 100%;
         height: 100%;
 
-        background-image: url("../assets/photos/hackathon.png");
+        background-image: url("../assets/photos/hackathon.jpg");
         background-position: -20px -20px;
         filter: blur(9px);
     }
