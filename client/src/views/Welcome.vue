@@ -8,18 +8,46 @@
                             <div class="row">
                                 <div class="card-left col-6">
                                     <div class="inner">
-                                        <h1>Hackathon Title</h1>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="../assets/theme/logo.svg" alt="" />
+                                            </div>
+                                            <div class="col-9">
+                                                <h1>HackTheU</h1>
+                                                <p class="lead">Presented by Galileo</p>
+                                            </div>
+                                        </div>
                                         <hr/>
-                                        <p>A short description about the hackathon, maybe a call to action, or something
-                                            catchy to make people want to sign up.</p>
+                                        <div class="row pb-5">
+                                            <div class="col-6">
+                                                <font-awesome-icon icon="map-marker-alt" class="float-left mr-3 h-100"/>
+                                                480 Wakara Way, Salt Lake City, UT 84108
+                                            </div>
+                                            <div class="col-6">
+                                                <font-awesome-icon icon="calendar-alt" class="float-left mr-3 h-100"/>
+                                                10:00 AM October 5th to 5:00 PM October 6th
+                                            </div>
+                                        </div>
+                                        <p>Come join us for our fourth annual hackathon! The event is completely free,
+                                            and $1000s of prizes will be given out!</p>
+                                        <img class="sponsor mt-4" src="../assets/theme/sponsor.svg" alt="" />
                                     </div>
                                 </div>
-                                <div class="card-right col-6">
-                                    <h1>Sign In</h1>
-                                    <hr/>
-                                    <p class="lead text-center">Sign-in is provided by:</p>
-                                    <a class="btn-mlh btn btn-block btn-outline-primary"><img
-                                            src="../assets/third-party/my-mlh.svg" alt="My MLH Sign In"/> </a>
+                                <div class="card-right d-flex flex-column col-6">
+                                    <div class="sign-in-content flex-grow-1">
+                                        <h1>Sign In</h1>
+                                        <hr/>
+                                        <p class="lead">Please create an account and sign in using MyMLH</p>
+                                        <a class="btn-mlh btn btn-block btn-lg btn-outline-primary" href="#">
+                                            <img src="../assets/third-party/my-mlh.svg" class="mlh-colored" alt="MyMLH Sign In" />
+                                            <img src="../assets/third-party/my-mlh-white.svg" class="mlh-white" alt="MyMLH Sign In" />
+                                        </a>
+                                    </div>
+                                    <div class="sign-in-footer row">
+                                        <div class="col text-right">
+                                            <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -47,15 +75,15 @@
 
         border-radius: 20px;
         border: none;
-        box-shadow: 0 0 15px -6px #666;
+        box-shadow: 0 0 20px -8px black;
     }
 
     .login-card .card-left {
-        padding: 20px;
-        background-color: $brand-primary;
-        background-image: url("../assets/photos/hackathon.png");
-        color: white;
         z-index: 1;
+
+        padding: 0;
+        background-color: $brand-primary;
+        color: white;
     }
 
     .login-card .card-left .inner:after {
@@ -71,15 +99,14 @@
 
         background-image: url("../assets/photos/hackathon.png");
         background-position: -20px -20px;
-        filter: blur(8px);
+        filter: blur(9px);
     }
 
     .login-card .card-left .inner {
         position: relative;
         overflow: hidden;
 
-        padding: 30px;
-        border-radius: 20px;
+        padding: 50px;
         background-color: rgba($brand-primary, 0.8);
     }
 
@@ -89,5 +116,17 @@
 
     .login-card .btn-mlh > img {
         height: 30px;
+    }
+
+    .login-card .btn-mlh:not(:hover) > .mlh-white {
+        display: none;
+    }
+
+    .login-card .btn-mlh:hover > .mlh-colored {
+        display: none;
+    }
+
+    img.sponsor {
+        max-height: 200px;
     }
 </style>
