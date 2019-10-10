@@ -1,11 +1,18 @@
+import './config/environment';
+import './middlewares';
+import apiRouter from "./routes";
+
 import express from "express";
 import compression from "compression";
-import apiRouter from "./controllers";
 import * as path from "path";
+import passport from "passport";
 
 // Setup
-const app = express();
 const port: string | number = process.env.PORT || 3000;
+const app = express();
+
+// Middleware
+app.use(passport.initialize());
 
 // API
 app.use("/api", apiRouter);
