@@ -2,10 +2,19 @@
   "name": "server",
   "version": "1.0.0",
   "description": "CometCrate Essentials Server",
-  "main": "server.js",
+  "main": "./dist/server.js",
   "scripts": {
-    "build": "rimraf dist && tsc",
-    "live-test": "npm run build && node dist/server.js"
+    "dev": "nodemon",
+    "dev:exec": "node --inspect=5858 -r ts-node/register ./src/server.ts",
+    "build": "rimraf dist && tsc"
+  },
+  "nodemonConfig": {
+    "delay": 1000,
+    "watch": [
+      "src"
+    ],
+    "exec": "npm run dev:exec",
+    "ext": "*"
   },
   "repository": {
     "type": "git",
@@ -33,7 +42,9 @@
     "@types/passport": "^1.0.1",
     "@types/passport-oauth2": "^1.4.8",
     "@types/node": "^12.7.11",
+    "nodemon": "^1.19.3",
     "rimraf": "^3.0.0",
+    "ts-node": "^8.4.1",
     "typescript": "^3.6.3"
   }
 }

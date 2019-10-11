@@ -11,7 +11,7 @@ router.use('/login',
 router.use('/callback',
     passport.authenticate(OAUTH_MLH_STRATEGY, {failureRedirect: '/'}),
     (req: Request, res: Response) => {
-        res.send(req.user);
+        res.redirect("/");
     }
 );
 
