@@ -1,27 +1,23 @@
-import './config/environment';
-import './middlewares';
-import apiRouter from "./routes";
-
 import express from "express";
-import compression from "compression";
-import * as path from "path";
 import passport from "passport";
 
-// Setup
+// Environment Setup
+import './config/environment';
+
+// Database Setup
+import './database';
+
+// Express Setup
 const port: string | number = process.env.PORT || 3000;
 const app = express();
 
-// Middleware
+// Middleware Setup
+import './middlewares';
 app.use(passport.initialize());
 
-// API
-app.use("/api", apiRouter);
-
-// Static Files
-app.use("/", compression(), express.static(path.resolve(__dirname, "public")));
-app.get("*", compression(), async (request, response) => {
-    response.sendFile(path.resolve(__dirname, "public/index.html"));
-});
+// Routing Setup
+import routes from "./routes";
+app.use("/", routes);
 
 // Finalize
 app.listen(port, () => console.log(`App listening on port ${port}`));

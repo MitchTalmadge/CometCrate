@@ -1,6 +1,6 @@
 import passport from "passport";
 import {Request, Response, Router} from "express";
-import {OAUTH_MLH_STRATEGY} from "../../../middlewares/auth/oauth/mlh";
+import {OAUTH_MLH_STRATEGY} from "../../../../middlewares/auth/oauth/mlh";
 
 const router = Router();
 

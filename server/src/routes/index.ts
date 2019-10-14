@@ -1,14 +1,10 @@
-import {Request, Response, Router} from "express";
-import authRoutes from "./auth";
-import pingRoutes from './ping';
+import {Router} from "express";
+import apiRoutes from "./api";
+import staticRoutes from "./static";
 
 const router = Router();
 
-router.use('/auth', authRoutes);
-router.use('/ping', pingRoutes);
-
-router.get("/*", (req: Request, res: Response) => {
-    res.status(404).send("Requested Endpoint Not Found");
-});
+router.use('/api', apiRoutes);
+router.use('/*', staticRoutes);
 
 export default router;
