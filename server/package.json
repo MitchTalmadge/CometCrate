@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "nodemon",
     "dev:exec": "node --inspect=5858 -r ts-node/register ./dev/init.ts",
-    "build": "rimraf dist && tsc"
+    "build": "rimraf dist temp && tsc"
   },
   "nodemonConfig": {
     "delay": 1000,
     "watch": [
-      "src"
+      "src",
+      "dev"
     ],
     "exec": "npm run dev:exec",
     "ext": "*"
@@ -40,12 +41,18 @@
     "@types/compression": "^1.0.1",
     "@types/dotenv": "^6.1.1",
     "@types/express": "^4.17.1",
+    "@types/mkdirp": "^0.5.2",
     "@types/mongodb": "^3.3.6",
-    "@types/mongodb-memory-server": "^1.8.0",
     "@types/mongoose": "^5.5.20",
     "@types/node": "^12.7.11",
     "@types/passport": "^1.0.1",
     "@types/passport-oauth2": "^1.4.8",
+    "@typescript-eslint/eslint-plugin": "^2.3.3",
+    "@typescript-eslint/parser": "^2.3.3",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "mkdirp": "^0.5.1",
     "mongodb-memory-server": "^5.2.8",
     "nodemon": "^1.19.3",
     "rimraf": "^3.0.0",

@@ -1,23 +1,25 @@
-import express from "express";
-import passport from "passport";
+import express from 'express';
+import passport from 'passport';
 
 // Environment Setup
-import './config/environment';
+require('./config/environment');
 
 // Database Setup
-import './database';
+require('./database');
 
 // Express Setup
 const port: string | number = process.env.PORT || 3000;
 const app = express();
 
 // Middleware Setup
-import './middlewares';
+require('./middlewares');
+
 app.use(passport.initialize());
 
 // Routing Setup
-import routes from "./routes";
-app.use("/", routes);
+const routes = require('./routes').default;
+
+app.use('/', routes);
 
 // Finalize
 app.listen(port, () => console.log(`App listening on port ${port}`));

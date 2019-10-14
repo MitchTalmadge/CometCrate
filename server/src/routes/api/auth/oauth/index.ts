@@ -1,5 +1,5 @@
-import {Router} from "express";
-import mlhRoutes from "./mlh";
+import { Router } from 'express';
+import mlhRoutes from './mlh';
 
 const router = Router();
 

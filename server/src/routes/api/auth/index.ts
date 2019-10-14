@@ -1,8 +1,8 @@
-import {Router} from "express";
-import oauthRoutes from "./oauth";
+import { Router } from 'express';
+import oauthRoutes from './oauth';
 
 const router = Router();
 
-router.use("/oauth", oauthRoutes);
+router.use('/oauth', oauthRoutes);
 
 export default router;

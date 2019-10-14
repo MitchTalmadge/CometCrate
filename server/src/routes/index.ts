@@ -1,6 +1,6 @@
-import {Router} from "express";
-import apiRoutes from "./api";
-import staticRoutes from "./static";
+import { Router } from 'express';
+import apiRoutes from './api';
+import staticRoutes from './static';
 
 const router = Router();
 

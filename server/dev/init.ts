@@ -1,6 +1,7 @@
 import preInit from './pre-init';
 
 preInit()
-    .then(() => {
-        require("../src/server");
-    });
+  .then(() => {
+    // eslint-disable-next-line global-require
+    require('../src/server');
+  });
