@@ -14,15 +14,25 @@ const mlhOAuthStrategy = new OAuth2Strategy({
   callbackURL: process.env.OAUTH_MLH_CALLBACK_URL,
   scope: ['email', 'phone_number', 'birthday', 'education'],
 },
-(accessToken: string, refreshToken: string, profile: MLHUser, cb: any) => {
-  const user: User = {
-    firstName: profile.first_name,
-    lastName: profile.last_name,
-    email: profile.email,
-    phone: profile.phone_number,
-  };
+(accessToken: string, refreshToken: string, profile: MLHUser, done: any) => {
+  User.findOne({
+    mlhId: profile.id,
+  })
+    .then((user) => {
+      if (user) return done(null, user);
 
-  cb(null, user);
+      const newUser = new User();
+      newUser.firstName = profile.first_name;
+      newUser.lastName = profile.last_name;
+      newUser.email = profile.email;
+      newUser.phone = profile.phone_number;
+      newUser.mlhId = profile.id;
+
+      newUser.save()
+        .then(() => done(null, newUser))
+        .catch((err) => done(err));
+    })
+    .catch((err) => done(err));
 });
 
 mlhOAuthStrategy.userProfile = (accessToken: string, done: any) => {

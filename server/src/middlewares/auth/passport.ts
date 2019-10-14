@@ -1,10 +1,12 @@
 import passport from 'passport';
-import { User } from '../../models/database/user.model';
+import { IUser, User } from '../../models/database/user.model';
 
-passport.serializeUser((user: User, done: any) => {
-  done(null, user);
+passport.serializeUser((user: IUser, done: any) => {
+  done(null, user.id);
 });
 
-passport.deserializeUser((user: User, done: any) => {
-  done(null, user);
+passport.deserializeUser((id: any, done: any) => {
+  User.findById(id)
+    .then((user) => done(null, user))
+    .catch((err) => done(err));
 });
