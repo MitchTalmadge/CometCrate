@@ -37,7 +37,7 @@
                                     <div class="sign-in-content flex-grow-1">
                                         <h1>Sign In</h1>
                                         <hr/>
-                                        <p class="lead">Please create an account and sign in using MyMLH</p>
+                                        <p class="lead">Create an account and/or sign in using MyMLH</p>
                                         <a class="btn-mlh btn btn-block btn-lg btn-outline-primary" href="/api/auth/oauth/mlh/login">
                                             <img src="../assets/third-party/my-mlh.svg" class="mlh-colored" alt="MyMLH Sign In" />
                                             <img src="../assets/third-party/my-mlh-white.svg" class="mlh-white" alt="MyMLH Sign In" />

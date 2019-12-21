@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col">
                     <img src="../assets/logo.svg" class="logo" alt=""/>
-                    Powered By <a href="http://cometcrate.io" class="text-light font-weight-bold">Comet Crate</a>
+                    Powered By <a href="https://github.com/CometCrate" class="text-light font-weight-bold">Comet Crate</a>
                 </div>
             </div>
         </div>
