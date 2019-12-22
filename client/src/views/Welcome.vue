@@ -10,7 +10,7 @@
                                     <div class="inner">
                                         <div class="row">
                                             <div class="col-3">
-                                                <img src="../assets/theme/logo.svg" alt="" />
+                                                <img src="../assets/theme/logo.svg" alt=""/>
                                             </div>
                                             <div class="col-9">
                                                 <h1>HackTheU</h1>
@@ -30,18 +30,24 @@
                                         </div>
                                         <p>Come join us for our fourth annual hackathon! The event is completely free,
                                             and $1000s of prizes will be given out!</p>
-                                        <img class="sponsor mt-4" src="../assets/theme/sponsor.svg" alt="" />
+                                        <img class="sponsor mt-4" src="../assets/theme/sponsor.svg" alt=""/>
                                     </div>
                                 </div>
                                 <div class="card-right d-flex flex-column col-6">
                                     <div class="sign-in-content flex-grow-1">
                                         <h1>Sign In</h1>
                                         <hr/>
-                                        <p class="lead">Create an account and/or sign in using MyMLH</p>
-                                        <a class="btn-mlh btn btn-block btn-lg btn-outline-primary" href="/api/auth/oauth/mlh/login">
-                                            <img src="../assets/third-party/my-mlh.svg" class="mlh-colored" alt="MyMLH Sign In" />
-                                            <img src="../assets/third-party/my-mlh-white.svg" class="mlh-white" alt="MyMLH Sign In" />
-                                        </a>
+                                        <p class="lead">Enter your Email Address to Sign In</p>
+                                        <form>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">@</span>
+                                                </div>
+                                                <input class="form-control" type="email" placeholder="Email Address"
+                                                       aria-label="Email Address"/>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                        </form>
                                     </div>
                                     <div class="sign-in-footer row">
                                         <div class="col text-right">
@@ -59,13 +65,13 @@
 </template>
 
 <script lang="ts">
-    import {Component, Vue} from 'vue-property-decorator';
+  import { Component, Vue } from 'vue-property-decorator';
 
-    @Component({
-        components: {},
-    })
-    export default class Welcome extends Vue {
-    }
+  @Component({
+    components: {},
+  })
+  export default class Welcome extends Vue {
+  }
 </script>
 
 <style scoped lang="scss">

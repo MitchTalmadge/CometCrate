@@ -18,4 +18,9 @@ export const UserSchema = new Schema({
   mlhId: { type: String, required: false },
 });
 
+UserSchema.post('init', (doc) => {
+  console.log('I loaded a user.');
+  console.log(doc);
+});
+
 export const User = mongoose.model<IUser>('User', UserSchema);
