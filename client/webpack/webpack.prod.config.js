@@ -8,7 +8,7 @@ config.plugins.push(
     // AOT Compilation
     new AngularCompilerPlugin({
         hostReplacementPaths: {
-            [resolve('src/environment/environment.ts')]: resolve('src/environment/environment.prod.ts')
+            [path.join(__dirname, '../src/environments/environment.ts')]: path.join(__dirname, '../src/environments/environment.prod.ts')
         },
         mainPath: path.join(__dirname, '../src/main.ts'),
         nameLazyFiles: false,
