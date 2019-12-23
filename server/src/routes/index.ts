@@ -4,7 +4,7 @@ import staticRoutes from './static';
 
 const router = Router();
 
-router.use('/api', apiRoutes);
+router.use('/api/essentials', apiRoutes);
 router.use('/*', staticRoutes);
 
 export default router;

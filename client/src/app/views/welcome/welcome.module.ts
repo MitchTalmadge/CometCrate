@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { WelcomeComponent } from './welcome.component';
 import { RouterModule, Routes } from "@angular/router";
 import { ComponentsModule } from "@/app/components/components.module";
+import { ReactiveFormsModule } from "@angular/forms";
 
 const routes: Routes = [
   {
@@ -14,7 +15,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(routes),
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule
   ],
   exports: [],
   declarations: [ WelcomeComponent ],

@@ -2,7 +2,11 @@ import { Router } from 'express';
 import authRoutes from './auth';
 import pingRoutes from './ping';
 
+const cors = require('cors');
+
 const router = Router();
+
+router.use(cors());
 
 router.use('/auth', authRoutes);
 router.use('/ping', pingRoutes);

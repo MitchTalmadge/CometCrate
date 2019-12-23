@@ -1,9 +1,7 @@
 import {HttpClientModule, HttpClientXsrfModule} from "@angular/common/http";
 import {NgModule, Optional, SkipSelf} from "@angular/core";
+import { AuthService } from "@/app/services/auth.service";
 
-/**
- * This module contains the service and other things which should only load once in the application.
- */
 @NgModule({
   imports: [
     HttpClientModule,
@@ -12,13 +10,14 @@ import {NgModule, Optional, SkipSelf} from "@angular/core";
   declarations: [],
   exports: [],
   providers: [
+    AuthService
   ],
 })
-export class CoreModule {
+export class ServiceModule {
 
-  constructor(@Optional() @SkipSelf() otherCoreModule: CoreModule) {
+  constructor(@Optional() @SkipSelf() otherCoreModule: ServiceModule) {
     if (otherCoreModule) {
-      throw new Error("The Core Module was imported twice.");
+      throw new Error("The Service Module was imported twice.");
     }
   }
 

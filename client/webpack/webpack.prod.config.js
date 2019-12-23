@@ -7,6 +7,9 @@ config.mode = "production";
 config.plugins.push(
     // AOT Compilation
     new AngularCompilerPlugin({
+        hostReplacementPaths: {
+            [resolve('src/environment/environment.ts')]: resolve('src/environment/environment.prod.ts')
+        },
         mainPath: path.join(__dirname, '../src/main.ts'),
         nameLazyFiles: false,
         skipCodeGeneration: false,

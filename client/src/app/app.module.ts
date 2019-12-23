@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { CoreModule } from "./core/core.module";
+import { ServiceModule } from "./services/service.module";
 import { FooterComponent } from "./footer/footer.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { ComponentsModule } from "@/app/components/components.module";
@@ -10,8 +10,8 @@ import { ComponentsModule } from "@/app/components/components.module";
   imports: [
     AppRoutingModule,
     BrowserModule,
-    CoreModule,
-    ComponentsModule
+    ServiceModule,
+    ComponentsModule,
   ],
   declarations: [
     AppComponent,

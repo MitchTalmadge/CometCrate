@@ -37,15 +37,23 @@
                                     <h1>Sign In</h1>
                                     <hr/>
                                     <p class="lead">Enter your Email Address to Sign In</p>
-                                    <form>
+                                    <form [formGroup]="emailFormGroup"
+                                          (submit)="onSubmitEmail()">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">@</span>
                                             </div>
-                                            <input class="form-control" type="email" placeholder="Email Address"
-                                                   aria-label="Email Address"/>
+                                            <input aria-label="Email Address"
+                                                   class="form-control"
+                                                   formControlName="email"
+                                                   placeholder="Email Address"
+                                                   type="email"/>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                        <button class="btn btn-primary btn-block"
+                                                [disabled]="emailFormGroup.invalid"
+                                                type="submit">
+                                            Submit
+                                        </button>
                                     </form>
                                 </div>
                                 <div class="sign-in-footer row">
