@@ -12,7 +12,7 @@ export default class ApiResponseUtils {
 
   public static sendBadRequestResponse(res: Response, error: string) {
     const apiError: ApiError = {
-      error,
+      message: error,
     };
 
     res.status(400).json(apiError);
@@ -20,7 +20,7 @@ export default class ApiResponseUtils {
 
   public static sendNotFoundResponse(res: Response, error: string) {
     const apiError: ApiError = {
-      error,
+      message: error,
     };
 
     res.status(404).json(apiError);
@@ -28,7 +28,7 @@ export default class ApiResponseUtils {
 
   public static sendInternalErrorResponse(res: Response, error: string) {
     const apiError: ApiError = {
-      error,
+      message: error,
     };
 
     res.status(500).json(apiError);

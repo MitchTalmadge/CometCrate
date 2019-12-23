@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { faCalendarAlt, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "@/app/services/auth.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "cc-welcome",
@@ -26,6 +27,12 @@ export class WelcomeComponent {
     this.authService.ident(this.emailFormGroup.get('email')!.value)
       .then(result => {
         console.log(result);
+      })
+      .catch((err: HttpErrorResponse) => {
+        if(err.status === 404)
+          console.error(err.error.message);
+        else
+          console.error("Unknown error.");
       })
   }
 

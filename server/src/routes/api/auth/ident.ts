@@ -5,7 +5,7 @@ import ApiResponseUtils from '../../../util/api/api-response-utils';
 const router = Router();
 
 router.use('/', (req, res) => {
-  let email = req.query.email;
+  const { email } = req.query;
   if (!email) {
     ApiResponseUtils.sendBadRequestResponse(res, 'Email not provided.');
     return;
@@ -19,6 +19,7 @@ router.use('/', (req, res) => {
 
     if (!user) {
       ApiResponseUtils.sendNotFoundResponse(res, 'No users exist with the given email.');
+      return;
     }
 
     ApiResponseUtils.sendOkResponse(res, user);
