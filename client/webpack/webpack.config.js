@@ -13,7 +13,7 @@ const config = {
         main: path.join(srcPath, 'main.ts')
     },
     resolve: {
-        extensions: ['.ts', '.js', '.json', '.jsx'],
+        extensions: ['.ts', '.mjs', '.js', '.json', '.jsx'],
         modules: ['node_modules'],
         alias: {
             // Force all modules to use the same jquery version.
