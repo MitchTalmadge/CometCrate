@@ -1,14 +1,11 @@
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-import initFontAwesome from './vendor/font-awesome';
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-Vue.config.productionTip = false;
+import { AppModule } from './app/app.module';
 
-// Vendors
-initFontAwesome();
+if (process.env.production) {
+    enableProdMode();
+}
 
-new Vue({
-    router,
-    render: (h) => h(App),
-}).$mount('#app');
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.log(err));

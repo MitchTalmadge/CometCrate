@@ -1,0 +1,12 @@
+// Theme
+@import "styles/app.component.bootstrap";
+
+html, body, .app-container {
+  height: 100%;
+}
+
+body {
+  background-image: url("~@/assets/backgrounds/geometry.png");
+  background-repeat: repeat;
+  background-color: #f9fafb;
+}

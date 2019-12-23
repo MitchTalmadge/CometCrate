@@ -1,135 +1,195 @@
 const path = require('path');
 const webpack = require('webpack');
-const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const HtmlPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const RootDir = path.resolve(__dirname, "../");
-const SrcDir = path.resolve(RootDir, "src");
-const DistDir = path.resolve(RootDir, "dist");
+const srcPath = path.join(__dirname, '../src');
+const outputPath = path.join(__dirname, '../dist');
 
-module.exports = {
-    entry: path.resolve(SrcDir, 'main.ts'),
-    output: {
-        path: DistDir,
-        publicPath: '/',
-        filename: 'static/js/[name].bundle.js',
-        chunkFilename: 'static/js/[name]-[hash].chunk.js'
+const config = {
+    cache: true,
+    entry: {
+        polyfills: path.join(srcPath, 'polyfills.ts'),
+        vendor: path.join(srcPath, 'vendor/index.ts'),
+        main: path.join(srcPath, 'main.ts')
     },
     resolve: {
-        extensions: ['.ts', '.js', '.vue', '.json', '.scss', '.css'],
+        extensions: ['.ts', '.js', '.json', '.jsx'],
+        modules: ['node_modules'],
         alias: {
-            '@': SrcDir,
-            'vue$': 'vue/dist/vue.esm.js'
+            // Force all modules to use the same jquery version.
+            'jquery': path.join(__dirname, '../node_modules/jquery/src/jquery'),
+            'src': srcPath,
+            '@': srcPath,
         }
     },
     module: {
         rules: [
             {
-                test: /\.vue$/,
-                loader: 'vue-loader',
+                test: /\.ts$/,
+                use: '@ngtools/webpack',
+                exclude: [/\.(spec|e2e)\.ts$/]
             },
             {
-                test: /\.tsx?$/,
-                loader: 'ts-loader',
-                exclude: /node_modules/,
-                options: {
-                    appendTsSuffixTo: [/\.vue$/],
-                }
-            },
-            {
-                test: /\.s?css$/,
+                test: /\.(component|directive)\.html$/,
                 use: [
-                    'vue-style-loader',
-                    'css-loader',
+                    "to-string-loader",
+                    {
+                        loader: 'html-loader',
+                        options: {
+                            minimize: false
+                        }
+                    },
+                ]
+            },
+            {
+                test: /\.html$/,
+                use: {
+                    loader: 'html-loader',
+                    options: {
+                        minimize: true
+                    }
+                },
+                exclude: [/\.(component|directive)\.html$/]
+            },
+            {
+                test: /\.(component|directive)\.css$/,
+                use: ["to-string-loader", "css-loader"]
+            },
+            {
+                test: /\.(component|directive)\.scss$/,
+                use: [
+                    "to-string-loader",
+                    "css-loader",
                     {
                         loader: 'sass-loader',
                         options: {
                             prependData:
                                 `
                                 $env: ${process.env.NODE_ENV}; 
-                                @import "@/styles/global/_global.scss";
+                                @import "@/app/styles/global/_global.scss";
                                 `
                         }
                     }
+                ],
+            },
+            {
+                test: /\.css(\?v=[\d.]+)?$/,
+                use: ["style-loader", "css-loader"],
+                exclude: [/\.(component|directive)\.css$/]
+            },
+            {
+                test: /\.scss(\?v=[\d.]+)?$/,
+                use: ["style-loader", "css-loader", "sass-loader"],
+                exclude: [/\.(component|directive)\.scss$/]
+            },
+            {
+                test: /\.xml$/,
+                use: "xml-loader"
+            },
+            {
+                test: /\.yaml/,
+                use: ["json-loader", "yaml-loader"]
+            },
+            {
+                test: /manifest\.json/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: './resources/json/[hash].[ext]'
+                    }
+                }
+            },
+            {
+                test: /\.(png|jpg|gif|svg|ico)(\?v=[\d.]+)?$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            esModule: false,
+                            limit: 8192,
+                            name: './resources/images/[hash].[ext]',
+                        }
+                    },
                 ]
             },
             {
-                test: /\.(png|jpg|gif|svg)$/,
-                loader: 'file-loader',
-                options: {
-                    name: 'static/images/[hash].[ext]',
-                    esModule: false
+                test: /\.(ttf|eot|woff|woff2)(\?v=[\d.]+)?$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: './resources/fonts/[hash].[ext]'
+                    }
                 }
             }
         ]
     },
-    optimization: {
-        runtimeChunk: 'single',
-        splitChunks: {
-            chunks: 'all',
-            maxInitialRequests: Infinity,
-            minSize: 0,
-            cacheGroups: {
-                vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name(module) {
-                        // get the name. E.g. node_modules/packageName/not/this/part.js
-                        // or node_modules/packageName
-                        const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-
-                        // npm package names are URL-safe, but some servers don't like @ symbols
-                        return `vendor/npm.${packageName.replace('@', '')}`;
-                    },
-                },
-            },
-        },
-    },
-    performance: {
-        hints: false
-    },
     plugins: [
-        new VueLoaderPlugin(),
-        new HtmlPlugin({
-            template: path.resolve(SrcDir, 'index.html'),
-            favicon: path.resolve(SrcDir, "assets/favicon.ico"),
-            chunksSortMode: 'dependency'
-        })
+        // This plugin removes all un-used locales from moment (a nearly 200kb reduction).
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
+
+        // Aliases for JS libraries.
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery',
+            jquery: 'jquery',
+            "window.jQuery": 'jquery',
+            tether: 'tether',
+            Tether: 'tether',
+            "window.tether": 'tether',
+            "window.Tether": 'tether',
+            Popper: 'popper.js'
+        }),
+
+        new HtmlWebpackPlugin({
+            template: path.join(srcPath, 'index.html.ejs'),
+            filename: path.join(outputPath, 'index.html'),
+            inject: 'body',
+            minify: {
+                minifyCSS: true,
+                minifyJS: true,
+                removeComments: true,
+                collapseWhitespace: true,
+                collapseInlineTagWhitespace: true
+            },
+            chunks: ['polyfills', 'vendor', 'main'],
+            chunksSortMode: 'manual'
+        }),
     ],
-    devServer: {
-        contentBase: DistDir,
-        compress: true,
-        historyApiFallback: true,
-        hot: true,
-        open: true,
-        overlay: true,
-        port: 8000,
-        stats: {
-            normal: true
-        },
-        proxy: {
-            '/api': 'http://localhost:3000'
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                main: {
+                    name: "main",
+                    minChunks: Infinity
+                },
+                vendor: {
+                    name: "vendor",
+                    minChunks: Infinity
+                },
+                polyfills: {
+                    name: "polyfills",
+                    minChunks: Infinity
+                },
+            }
         }
     },
-    devtool: '#eval-source-map'
+    output: {
+        path: outputPath,
+        filename: './resources/js/[name]-[chunkhash].js',
+        chunkFilename: './resources/js/[name]-[chunkhash].js',
+        sourceMapFilename: './resources/js/[name]-[chunkhash].map'
+    },
+    node: {
+        global: true,
+        process: true,
+        Buffer: false,
+        crypto: 'empty',
+        module: false,
+        clearImmediate: false,
+        setImmediate: false,
+        clearTimeout: true,
+        setTimeout: true
+    }
 };
 
-if (process.env.NODE_ENV === 'production') {
-    module.exports.devtool = '#source-map';
-    // http://vue-loader.vuejs.org/en/workflow/production.html
-    module.exports.plugins = (module.exports.plugins || []).concat([
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"production"'
-            }
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
-            compress: {
-                warnings: false
-            }
-        }),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true
-        })
-    ])
-}
+module.exports = config;
