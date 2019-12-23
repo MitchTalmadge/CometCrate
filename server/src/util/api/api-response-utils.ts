@@ -10,25 +10,25 @@ export default class ApiResponseUtils {
     res.status(204);
   }
 
-  public static sendBadRequestResponse(res: Response, error: string) {
+  public static sendBadRequestResponse(res: Response, message: string) {
     const apiError: ApiError = {
-      message: error,
+      message,
     };
 
     res.status(400).json(apiError);
   }
 
-  public static sendNotFoundResponse(res: Response, error: string) {
+  public static sendNotFoundResponse(res: Response, message: string) {
     const apiError: ApiError = {
-      message: error,
+      message,
     };
 
     res.status(404).json(apiError);
   }
 
-  public static sendInternalErrorResponse(res: Response, error: string) {
+  public static sendInternalErrorResponse(res: Response, message: string) {
     const apiError: ApiError = {
-      message: error,
+      message,
     };
 
     res.status(500).json(apiError);
