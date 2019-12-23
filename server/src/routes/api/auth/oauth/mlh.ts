@@ -8,9 +8,13 @@ router.use('/login',
   passport.authenticate(OAUTH_MLH_STRATEGY));
 
 router.use('/callback',
-  passport.authenticate(OAUTH_MLH_STRATEGY, { failureRedirect: '/' }),
+  passport.authenticate(OAUTH_MLH_STRATEGY, { failureRedirect: undefined }),
   (req, res) => {
-    res.redirect('/');
+    res.send(`
+    <script>
+        window.close();
+    </script>
+    `);
   });
 
 export default router;
