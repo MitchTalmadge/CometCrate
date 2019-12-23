@@ -22,8 +22,6 @@ jobs:
       - name: Install Server Dependencies
         run: npm --prefix server install
       - name: Build Client
-        if: success()
         run: npm --prefix client run build
       - name: Build Server
-        if: success()
         run: npm --prefix server run build
