@@ -142,6 +142,7 @@ const config = {
 
         new HtmlWebpackPlugin({
             template: path.join(srcPath, 'index.html.ejs'),
+            favicon: path.join(srcPath, 'assets/favicon.ico'),
             filename: path.join(outputPath, 'index.html'),
             inject: 'body',
             minify: {
