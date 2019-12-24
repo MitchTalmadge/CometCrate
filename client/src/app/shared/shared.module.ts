@@ -11,5 +11,5 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
   declarations: [  ],
   providers: [],
 })
-export class ComponentsModule {
+export class SharedModule {
 }

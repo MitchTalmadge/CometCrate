@@ -4,7 +4,7 @@ import { AppComponent } from "./app.component";
 import { ServiceModule } from "./services/service.module";
 import { FooterComponent } from "./footer/footer.component";
 import { BrowserModule } from "@angular/platform-browser";
-import { ComponentsModule } from "@/app/components/components.module";
+import { SharedModule } from "@/app/shared/shared.module";
 import { APOLLO_OPTIONS, ApolloModule } from "apollo-angular";
 import { HttpLink, HttpLinkModule } from "apollo-angular-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
@@ -15,7 +15,7 @@ import { environment } from "@/environment/environment.prod";
     ApolloModule,
     AppRoutingModule,
     BrowserModule,
-    ComponentsModule,
+    SharedModule,
     HttpLinkModule,
     ServiceModule,
   ],

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { WelcomeComponent } from './welcome.component';
 import { RouterModule, Routes } from "@angular/router";
-import { ComponentsModule } from "@/app/components/components.module";
+import { SharedModule } from "@/app/shared/shared.module";
 
 const routes: Routes = [
   {
@@ -14,7 +14,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(routes),
-    ComponentsModule,
+    SharedModule,
   ],
   exports: [],
   declarations: [ WelcomeComponent ],
