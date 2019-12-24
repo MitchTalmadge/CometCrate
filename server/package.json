@@ -4,7 +4,8 @@
   "description": "CometCrate Essentials Server",
   "main": "./dist/server.js",
   "scripts": {
-    "dev": "nodemon --inspect ./dev/init.ts",
+    "dev": "nodemon --inspect ./src/server.ts",
+    "dev:mem-mongo": "nodemon --inspect ./dev/init.ts",
     "build": "rimraf dist temp && tsc"
   },
   "nodemonConfig": {

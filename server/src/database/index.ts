@@ -11,6 +11,7 @@ class Database {
   }
 
   private static connect() {
+    console.log('Connecting to Database...');
     mongoose.connect(`mongodb://${DBAddr}/${DBName}`, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
