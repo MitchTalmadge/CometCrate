@@ -19,8 +19,7 @@ export const UserSchema = new Schema({
 });
 
 UserSchema.post('init', (doc) => {
-  console.log('I loaded a user.');
-  console.log(doc);
+  //TODO: Migrations
 });
 
 export const User = mongoose.model<IUser>('User', UserSchema);

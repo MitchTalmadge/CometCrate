@@ -11,18 +11,24 @@ import { IUser } from './models/database/user.model';
 require('./config/environment');
 
 // Database Setup
-require('./database');
+const database = require('./database').default;
 
 // Express Setup
 const port: string | number = process.env.PORT || 3000;
 const app = express();
 
 // Session Setup
+// eslint-disable-next-line import/order
+const MongoStore = require('connect-mongo')(session);
+
 app.use(session({
   name: 'comet-crate.sid',
-  secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: false,
+  secret: process.env.SESSION_SECRET,
+  store: new MongoStore({
+    mongooseConnection: database.getConnection(),
+  }),
 }));
 
 // Passport Setup
