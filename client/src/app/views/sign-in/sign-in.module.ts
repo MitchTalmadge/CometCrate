@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 
-import { WelcomeComponent } from './welcome.component';
+import { SignInComponent } from './sign-in.component';
 import { RouterModule, Routes } from "@angular/router";
 import { SharedModule } from "@/app/shared/shared.module";
 
 const routes: Routes = [
   {
     path: "",
-    component: WelcomeComponent,
+    component: SignInComponent,
   },
 ];
 
@@ -17,8 +17,8 @@ const routes: Routes = [
     SharedModule,
   ],
   exports: [],
-  declarations: [ WelcomeComponent ],
+  declarations: [ SignInComponent ],
   providers: [],
 })
-export class WelcomeModule {
+export class SignInModule {
 }

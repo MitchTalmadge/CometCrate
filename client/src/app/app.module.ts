@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { ServiceModule } from "./services/service.module";
 import { FooterComponent } from "./footer/footer.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { SharedModule } from "@/app/shared/shared.module";
@@ -9,6 +8,7 @@ import { APOLLO_OPTIONS, ApolloModule } from "apollo-angular";
 import { HttpLink, HttpLinkModule } from "apollo-angular-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { environment } from "@/environment/environment.prod";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   imports: [
@@ -16,8 +16,8 @@ import { environment } from "@/environment/environment.prod";
     AppRoutingModule,
     BrowserModule,
     SharedModule,
+    HttpClientModule,
     HttpLinkModule,
-    ServiceModule,
   ],
   declarations: [
     AppComponent,

@@ -1,15 +1,23 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { UnAuthGuard } from "@/app/guards/unauth.guard";
+import { AuthGuard } from "@/app/guards/auth.guard";
+import { environment } from "@/environment/environment";
 
 const routes: Routes = [
   {
-    path: "",
-    loadChildren: "./views/welcome/welcome.module#WelcomeModule",
+    path: "sign-in",
+    loadChildren: "./views/sign-in/sign-in.module#SignInModule",
+    canLoad: [ UnAuthGuard ]
+  },
+  {
+    path: 'secure',
+    loadChildren: './views/secure/secure.module#SecureModule',
+    canLoad: [ AuthGuard ]
   },
   {
     path: "**",
-    redirectTo: "/",
-    pathMatch: "full",
+    redirectTo: "/sign-in",
   },
 ];
 
@@ -17,7 +25,7 @@ const routes: Routes = [
  * The root routing module. Other routes can be found next to their respective views.
  */
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes, {enableTracing: !environment.production}) ],
   exports: [ RouterModule ],
   providers: [],
   declarations: [],

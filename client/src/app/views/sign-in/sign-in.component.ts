@@ -2,19 +2,20 @@ import { Component } from "@angular/core";
 import { faCalendarAlt, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { AuthService } from "@/app/services/auth.service";
 import { environment } from "@/environment/environment.prod";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: "cc-welcome",
-  templateUrl: 'welcome.component.html',
-  styleUrls: [ 'welcome.component.scss' ],
+  selector: "cc-sign-in",
+  templateUrl: 'sign-in.component.html',
+  styleUrls: [ 'sign-in.component.scss' ],
 })
-export class WelcomeComponent {
+export class SignInComponent {
 
   faMapMarkerAlt = faMapMarkerAlt;
   faCalendarAlt = faCalendarAlt;
 
   constructor(
-    private authService: AuthService) {
+    private router: Router) {
   }
 
   public onMLHButtonClick(): void {
@@ -30,8 +31,8 @@ export class WelcomeComponent {
       }
 
       if (oAuthWindow.closed) {
-        alert("OAuth Finished");
         clearInterval(oAuthWindowTimer);
+        this.router.navigate(['secure']);
       }
     }, 500);
   }

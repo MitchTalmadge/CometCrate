@@ -6,6 +6,8 @@ export interface IUser extends Document {
   email: string;
   phone: string;
 
+  onboarded: boolean;
+
   mlhId: string;
 }
 
@@ -15,11 +17,13 @@ export const UserSchema = new Schema({
   email: { type: String, required: true, unique: true },
   phone: { type: String, required: false },
 
+  onboarded: { type: Boolean, required: false, default: false },
+
   mlhId: { type: String, required: false },
 });
 
 UserSchema.post('init', (doc) => {
-  //TODO: Migrations
+  // TODO: Migrations
 });
 
 export const User = mongoose.model<IUser>('User', UserSchema);

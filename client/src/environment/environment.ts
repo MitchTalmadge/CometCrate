@@ -1,3 +1,4 @@
 export const environment = {
-  apiUrl: '/api/essentials'
+  apiUrl: '/api/essentials',
+  production: false,
 };
