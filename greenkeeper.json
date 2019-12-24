@@ -2,7 +2,7 @@
   "groups": {
     "client": {
       "packages": [
-        "client/package.json"        
+        "client/package.json"
       ],
       "ignore": [
         "typescript"

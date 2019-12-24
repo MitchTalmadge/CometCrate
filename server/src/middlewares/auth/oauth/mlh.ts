@@ -20,7 +20,9 @@ const mlhOAuthStrategy = new OAuth2Strategy(
       mlhId: profile.id,
     })
       .then((user) => {
-        if (user) return done(null, user);
+        if (user) {
+          return done(null, user);
+        }
 
         const newUser = new User();
         newUser.firstName = profile.first_name;

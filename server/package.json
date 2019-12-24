@@ -4,8 +4,7 @@
   "description": "CometCrate Essentials Server",
   "main": "./dist/server.js",
   "scripts": {
-    "dev": "nodemon",
-    "dev:exec": "node --inspect=5858 -r ts-node/register ./dev/init.ts",
+    "dev": "nodemon --inspect ./dev/init.ts",
     "build": "rimraf dist temp && tsc"
   },
   "nodemonConfig": {
@@ -14,7 +13,9 @@
       "src",
       "dev"
     ],
-    "exec": "npm run dev:exec",
+    "execMap": {
+      "ts": "node --require ts-node/register"
+    },
     "ext": "*"
   },
   "repository": {
@@ -31,12 +32,14 @@
     "apollo-server-express": "^2.9.14",
     "axios": "^0.19.0",
     "compression": "^1.7.4",
+    "connect-mongo": "^3.2.0",
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "graphql": "^14.5.8",
     "mongoose": "^5.8.2",
-    "passport": "^0.4.0",
+    "passport": "^0.4.1",
     "passport-oauth2": "^1.5.0"
   },
   "devDependencies": {
@@ -44,6 +47,7 @@
     "@types/compression": "^1.0.1",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.1",
+    "@types/express-session": "^1.15.16",
     "@types/mkdirp": "^0.5.2",
     "@types/mongodb": "^3.3.6",
     "@types/mongoose": "^5.5.20",
