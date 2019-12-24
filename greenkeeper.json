@@ -3,6 +3,9 @@
     "client": {
       "packages": [
         "client/package.json"        
+      ],
+      "ignore": [
+        "typescript"
       ]
     },
     "server": {
