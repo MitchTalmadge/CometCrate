@@ -17,11 +17,6 @@
     "url": "https://github.com/CometCrate/Essentials/issues"
   },
   "homepage": "https://github.com/CometCrate/Essentials#readme",
-  "greenkeeper": {
-    "ignore": [
-      "typescript"
-      ]
-  },
   "dependencies": {
     "@angular/core": "^8.2.14",
     "@angular/common": "^8.2.14",
