@@ -1,0 +1,14 @@
+{
+  "groups": {
+    "client": {
+      "packages": [
+        "client/package.json"        
+      ]
+    },
+    "server": {
+      "packages": [
+        "server/package.json"
+      ]
+    }
+  }
+}
