@@ -8,12 +8,12 @@ const routes: Routes = [
   {
     path: "sign-in",
     loadChildren: "./views/sign-in/sign-in.module#SignInModule",
-    canLoad: [ UnAuthGuard ]
+    canActivate: [ UnAuthGuard ]
   },
   {
     path: 'secure',
     loadChildren: './views/secure/secure.module#SecureModule',
-    canLoad: [ AuthGuard ]
+    canActivate: [ AuthGuard ]
   },
   {
     path: "**",

@@ -4,7 +4,7 @@
             <div class="mid-section flex-grow-1 px-3">
                 <h1 class="h2">Hackathon Name</h1>
             </div>
-            <div class="user-section flex-grow-0">
+            <div class="user-section flex-grow-0" *ngIf="currentUser">
                 <span class="h5">
                     <fa-icon [icon]="faUserCircle" class="mr-2"></fa-icon>
                     {{currentUser.firstName}} {{currentUser.lastName}}

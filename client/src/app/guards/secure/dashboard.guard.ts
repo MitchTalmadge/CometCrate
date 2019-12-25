@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, UrlTree } from '@angular/router';
 import { AuthService } from "@/app/services/auth.service";
 import { first } from "rxjs/operators";
 
 @Injectable({ providedIn: 'root' })
-export class DashboardGuard implements CanLoad {
+export class DashboardGuard implements CanActivate {
 
   constructor(private authService: AuthService,
               private router: Router) {
   }
 
-  canLoad(route: Route): Promise<boolean> {
-    return new Promise<boolean>((resolve, reject) => {
+  canActivate(route: ActivatedRouteSnapshot): Promise<boolean | UrlTree> {
+    return new Promise<boolean | UrlTree>((resolve, reject) => {
       this.authService.$currentUser.pipe(first()).toPromise()
         .then(user => {
           if (!user) {
@@ -22,8 +22,7 @@ export class DashboardGuard implements CanLoad {
               resolve(true);
             } else {
               console.log("User needs to complete onboarding. Redirecting...");
-              this.router.navigateByUrl('/secure/onboard');
-              resolve(false);
+              resolve(this.router.parseUrl('/secure/onboard'));
             }
           }
         })

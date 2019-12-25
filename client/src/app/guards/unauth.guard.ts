@@ -1,26 +1,25 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, UrlTree } from '@angular/router';
 import { AuthService } from "@/app/services/auth.service";
 
 @Injectable({
   providedIn: 'root',
 })
-export class UnAuthGuard implements CanLoad {
+export class UnAuthGuard implements CanActivate {
 
   constructor(private authService: AuthService,
               private router: Router) {
   }
 
-  canLoad(route: Route): Promise<boolean> {
-    return new Promise<boolean>((resolve, reject) => {
+  canActivate(route: ActivatedRouteSnapshot): Promise<boolean | UrlTree> {
+    return new Promise<boolean | UrlTree>((resolve, reject) => {
       this.authService.fetchCurrentUser()
         .then(user => {
           if (!user) {
             resolve(true);
           } else {
             console.log("User is already signed in. Redirecting to dashboard.");
-            this.router.navigate(['secure']);
-            resolve(false);
+            resolve(this.router.parseUrl('/secure'));
           }
         })
         .catch(err => {
