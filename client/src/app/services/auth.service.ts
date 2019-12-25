@@ -1,8 +1,8 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { User } from "@/models/api/user.model";
 import gql from "graphql-tag";
 import { Apollo } from "apollo-angular";
-import { BehaviorSubject} from "rxjs";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +21,12 @@ export class AuthService {
       }
   `;
 
+  private static readonly SignOutMutation = gql`
+      mutation SignOutMutation {
+          signOut
+      }
+  `;
+
   public $currentUser = new BehaviorSubject<User | undefined>(undefined);
 
   constructor(private apollo: Apollo) {
@@ -34,13 +40,28 @@ export class AuthService {
       }).subscribe((result) => {
         this.$currentUser.next(result.data.self);
         resolve(result.data.self);
-      }, error => {
-        console.error("Failed to get current user: " + error);
+      }, err => {
+        console.error("Failed to get current user: " + err);
         this.$currentUser.next(undefined);
-        reject(error);
+        reject(err);
       })
     })
 
+  }
+
+  public signOut(): Promise<void> {
+    return new Promise<void>(((resolve, reject) => {
+      this.apollo.mutate<any>({
+        mutation: AuthService.SignOutMutation
+      }).subscribe(() => {
+        this.$currentUser.next(undefined);
+        resolve();
+      }, err => {
+        console.error("Failed to sign out: " + err);
+        this.$currentUser.next(undefined);
+        reject(err);
+      })
+    }))
   }
 
 }

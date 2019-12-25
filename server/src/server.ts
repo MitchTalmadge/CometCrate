@@ -44,6 +44,7 @@ const apolloServer = new ApolloServer({
   typeDefs: graphQLSchema,
   context: async ({ req, res }) => {
     const context: ApolloContext = {
+      req,
       currentUser: req.user ? <IUser>req.user : undefined,
     };
 

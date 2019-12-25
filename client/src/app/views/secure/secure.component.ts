@@ -3,6 +3,7 @@ import { User } from "@/models/api/user.model";
 import { Subscription } from "rxjs";
 import { AuthService } from "@/app/services/auth.service";
 import { faSignOutAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'cc-secure',
@@ -17,7 +18,8 @@ export class SecureComponent implements OnInit, OnDestroy {
   public faUserCircle = faUserCircle;
   public faSignOutAlt = faSignOutAlt;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -30,6 +32,16 @@ export class SecureComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.currentUserSubscription)
       this.currentUserSubscription.unsubscribe();
+  }
+
+  public onSignOutClicked() {
+    this.authService.signOut()
+      .then(() => {
+        this.router.navigate(['/']);
+      })
+      .catch(err => {
+        this.router.navigate(['/']);
+      })
   }
 
 }

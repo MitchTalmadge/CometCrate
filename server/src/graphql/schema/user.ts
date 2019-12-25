@@ -5,6 +5,10 @@ export default gql`
     extend type Query {
         self: User
     }
+    
+    extend type Mutation {
+        signOut: Boolean
+    }
 
     type User {
         id: ID!
