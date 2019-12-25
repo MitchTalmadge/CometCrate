@@ -1,2 +1,23 @@
-<h1>Secure</h1>
-<router-outlet></router-outlet>
+<div class="d-flex flex-column h-100">
+    <div class="flex-grow-0 p-3">
+        <div class="top-bar d-flex">
+            <div class="mid-section flex-grow-1">
+
+            </div>
+            <div class="user-section flex-grow-0">
+                <span class="h5">
+                    <fa-icon [icon]="faUserCircle" class="mr-2"></fa-icon>
+                    {{currentUser.firstName}} {{currentUser.lastName}}
+                </span>
+            </div>
+            <div class="exit-section flex-grow-0">
+                <span class="h5">
+                    <fa-icon [icon]="faSignOutAlt"></fa-icon>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="flex-grow-1">
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -4,6 +4,7 @@ import { OnboardComponent } from "@/app/views/secure/onboard/onboard.component";
 import { CommonModule } from "@angular/common";
 import { DashboardGuard } from "@/app/guards/secure/dashboard.guard";
 import { SecureComponent } from "@/app/views/secure/secure.component";
+import { SharedModule } from "@/app/shared/shared.module";
 
 const routes: Routes = [
   {
@@ -30,7 +31,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   exports: [],
   declarations: [

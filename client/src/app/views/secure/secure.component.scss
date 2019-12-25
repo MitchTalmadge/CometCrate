@@ -1,0 +1,35 @@
+.top-bar {
+  border-radius: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px -5px black;
+
+  overflow: hidden;
+}
+
+.user-section {
+  padding: 15px 30px;
+
+  background-color: #fafafa;
+  transition: background-color 100ms ease-in-out;
+
+  cursor: pointer;
+}
+
+.user-section:hover {
+  background-color: $brand-primary;
+  color: white;
+}
+
+.exit-section {
+  padding: 15px 30px;
+
+  background-color: #f1f1f1;
+  transition: background-color 100ms ease-in-out;
+
+  cursor: pointer;
+}
+
+.exit-section:hover {
+  background-color: #dc413b;
+  color: white;
+}
