@@ -1,22 +1,37 @@
     <div class="container h-100 d-flex">
         <div class="row w-100 align-items-center">
             <div class="col">
-                <h1 class="text-center display-4">How will you be joining?</h1>
+                <h1 class="text-center display-4">How will you be registering?</h1>
                 <hr/>
                 <div class="row">
-                    <div class="col-6">
-                        <div class="option-card">
-                            <h2>As a Participant</h2>
-                            <hr/>
-
+                    <div class="col-6 p-4">
+                        <div class="option-card" [class.selected]="isParticipantSelected()" (click)="onParticipantClick()">
+                            <div class="icon-section">
+                                <fa-icon [icon]="faLaptopCode" [fixedWidth]="true"></fa-icon>
+                            </div>
+                            <div class="label-section">
+                                As a Participant
+                            </div>
                         </div>
 
                     </div>
-                    <div class="col-6">
-                        <div class="option-card">
-                            <h2>As a Volunteer</h2>
-                            <hr/>
+                    <div class="col-6 p-4">
+                        <div class="option-card" [class.selected]="isVolunteerSelected()" (click)="onVolunteerClick()">
+                            <div class="icon-section">
+                                <fa-icon [icon]="faHandHoldingHeart" [fixedWidth]="true"></fa-icon>
+                            </div>
+                            <div class="label-section">
+                                As a Volunteer
+                            </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col px-4 d-flex justify-content-end">
+                        <button class="btn btn-lg btn-primary" [disabled]="!(isParticipantSelected() || isVolunteerSelected())">
+                            Continue
+                            <fa-icon [icon]="faAngleRight"></fa-icon>
+                        </button>
                     </div>
                 </div>
             </div>

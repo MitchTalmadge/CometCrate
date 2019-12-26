@@ -6,7 +6,29 @@ html, body, .app-container {
 }
 
 body {
-  background-image: url("~@/assets/backgrounds/geometry.png");
+  background-image: url("../assets/backgrounds/geometry.png");
   background-repeat: repeat;
   background-color: #f9fafb;
+}
+
+.footer {
+  height: 50px;
+  width: fit-content;
+
+  padding-right: 30px;
+  box-sizing: content-box;
+
+  border: 2px solid #ccc;
+  border-left: none;
+  border-bottom: none;
+  border-top-right-radius: 50px;
+
+  background-color: #333;
+  color: white;
+}
+
+.footer .logo {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
 }

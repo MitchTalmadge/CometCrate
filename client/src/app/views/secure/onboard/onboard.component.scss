@@ -1,9 +1,42 @@
 .option-card {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
   background-color: #fff;
+  color: #666;
+  font-size: 2rem;
+  cursor: pointer;
+  user-select: none;
+
   border-radius: 10px;
   border: none;
   box-shadow: 0 0 15px -8px black;
 
+  transition: background-color 100ms ease-in-out;
+}
+
+.option-card.selected,
+.option-card.selected .icon-section {
+  background-color: $brand-primary;
+  color: $brand-text;
+}
+
+.option-card .icon-section {
+  flex-grow: 0;
   padding: 20px;
-  margin: 20px;
+
+  background-color: #f1f1f1;
+
+  transition: background-color 100ms ease-in-out;
+}
+
+.option-card:hover .icon-section {
+  background-color: $brand-primary;
+  color: $brand-text;
+}
+
+.option-card .label-section {
+  flex-grow: 1;
+  text-align: center;
 }

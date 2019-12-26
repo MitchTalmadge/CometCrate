@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { FooterComponent } from "./footer/footer.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { SharedModule } from "@/app/shared/shared.module";
 import { APOLLO_OPTIONS, ApolloModule } from "apollo-angular";
@@ -20,8 +19,7 @@ import { HttpClientModule } from "@angular/common/http";
     HttpLinkModule,
   ],
   declarations: [
-    AppComponent,
-    FooterComponent
+    AppComponent
   ],
   providers: [
     {
