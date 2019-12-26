@@ -13,9 +13,9 @@ import { RegistrationMethod } from "@/app/constants/onboard/registration-method.
 
 export class OnboardComponent implements OnInit, OnDestroy {
 
-  private faLaptopCode = faLaptopCode;
-  private faHandHoldingHeart = faHandHoldingHeart;
-  private faAngleRight = faAngleRight;
+  public faLaptopCode = faLaptopCode;
+  public faHandHoldingHeart = faHandHoldingHeart;
+  public faAngleRight = faAngleRight;
 
   public currentUser: User | undefined;
   private currentUserSubscription: Subscription | undefined;
