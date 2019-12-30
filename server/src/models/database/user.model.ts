@@ -1,4 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose';
+import { emit } from 'cluster';
 
 export interface IUser extends Document {
   firstName: string;
@@ -8,7 +9,11 @@ export interface IUser extends Document {
 
   onboarded: boolean;
 
+  // OAuth
   mlhId: string;
+
+  // Virtual
+  admin: boolean;
 }
 
 export const UserSchema = new Schema({
@@ -19,7 +24,14 @@ export const UserSchema = new Schema({
 
   onboarded: { type: Boolean, required: false, default: false },
 
+  // OAuth
   mlhId: { type: String, required: false },
+});
+
+UserSchema.virtual('admin').get(function() {
+  const userEmailDomain = this.email.substring(this.email.lastIndexOf('@') + 1);
+  if (!process.env.ADMIN_DOMAIN) return false;
+  return userEmailDomain.toLowerCase() === process.env.ADMIN_DOMAIN.toLowerCase();
 });
 
 UserSchema.post('init', (doc) => {

@@ -17,6 +17,7 @@ export default gql`
         email: String
         phone: String
         onboarded: Boolean
+        admin: Boolean
     }
 
 `;

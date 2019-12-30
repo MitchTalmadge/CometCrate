@@ -1,6 +1,7 @@
 import { User } from '../../models/database/user.model';
 import { ApolloContext } from '../../models/api/apollo-context.model';
 
+// noinspection JSUnusedGlobalSymbols
 export default {
   Query: {
     self: async (parent, args, context: ApolloContext) => {
