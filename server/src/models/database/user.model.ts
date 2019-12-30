@@ -1,5 +1,4 @@
 import mongoose, { Document, Schema } from 'mongoose';
-import { emit } from 'cluster';
 
 export interface IUser extends Document {
   firstName: string;
@@ -28,10 +27,22 @@ export const UserSchema = new Schema({
   mlhId: { type: String, required: false },
 });
 
-UserSchema.virtual('admin').get(function() {
+UserSchema.virtual('admin').get(function () {
   const userEmailDomain = this.email.substring(this.email.lastIndexOf('@') + 1);
-  if (!process.env.ADMIN_DOMAIN) return false;
-  return userEmailDomain.toLowerCase() === process.env.ADMIN_DOMAIN.toLowerCase();
+
+  if (process.env.ADMIN_DOMAIN
+    && userEmailDomain.toLowerCase() === process.env.ADMIN_DOMAIN.toLowerCase()) {
+    return true;
+  }
+
+  if (process.env.ADMIN_EMAILS) {
+    const emails = process.env.ADMIN_EMAILS.split(',');
+    if (emails.some((email) => this.email.toLowerCase() === email.trim().toLowerCase())) {
+      return true;
+    }
+  }
+
+  return false;
 });
 
 UserSchema.post('init', (doc) => {
