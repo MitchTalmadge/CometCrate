@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@angular/compiler-cli": "^8.2.14",
-    "@ngtools/webpack": "^8.3.21",
+    "@ngtools/webpack": "^9.0.0",
     "@types/webpack": "^4.41.0",
     "css-loader": "^3.4.0",
     "file-loader": "^5.0.2",
