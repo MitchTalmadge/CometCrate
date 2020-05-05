@@ -37,7 +37,7 @@
     "core-js": "^3.6.0",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
-    "rxjs": "^6.5.3"
+    "rxjs": "^6.5.5"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^8.2.14",
