@@ -34,7 +34,7 @@
     "apollo-client": "^2.6.8",
     "apollo-link": "^1.2.13",
     "bootstrap": "^4.4.1",
-    "core-js": "^3.6.0",
+    "core-js": "^3.6.5",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
     "rxjs": "^6.5.3"
