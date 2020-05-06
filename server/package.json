@@ -39,7 +39,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "graphql": "^14.5.8",
-    "mongoose": "^5.8.2",
+    "mongoose": "^5.9.11",
     "passport": "^0.4.1",
     "passport-oauth2": "^1.5.0"
   },
