@@ -31,7 +31,7 @@
   "homepage": "https://github.com/CometCrate/Essentials#readme",
   "dependencies": {
     "apollo-server-express": "^2.9.14",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "compression": "^1.7.4",
     "connect-mongo": "^3.2.0",
     "cors": "^2.8.5",
